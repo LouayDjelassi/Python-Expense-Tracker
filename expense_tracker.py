@@ -1,6 +1,3 @@
-import math
-
-
 expenses = []
 
 
@@ -15,12 +12,17 @@ def add_expense():
 
 
 def show_expenses():
-    if len(expenses) == 0:
-        print("There's no expenses yet")
-    else:
-        print("\nExpenses:")
-        for i, expense in enumerate(expenses, start=1):
-            print(f"{i}. {expense}")
+    if not expenses:
+        print("No expenses recorded.")
+        return
+    for number, expense in enumerate(expenses, start=1):
+        print(f"{number}. {expense['description']} - "
+              f"{expense['amount']:.2f}")
+
+
+def show_total():
+    total = sum(item["amount"] for item in expenses)
+    print(f"Total: {total:.2f}")
 
 
 def show_total():
